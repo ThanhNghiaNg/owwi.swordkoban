@@ -1,6 +1,8 @@
 # Build Android và iOS
 
-Tài liệu này mô tả quy trình build dự án **Ordered Sokoban** bằng Tauri 2, bao gồm chạy trên thiết bị thật, ký bản Android release và xử lý các lỗi Xcode đã gặp trong dự án.
+Tài liệu này mô tả quy trình build dự án **Swordkoban** bằng Tauri 2, bao gồm chạy trên thiết bị thật, ký bản Android release và xử lý các lỗi Xcode đã gặp trong dự án.
+
+Bản production trên mọi nền tảng tải giao diện từ <https://swordkoban.vercel.app>. Vì vậy thiết bị cần kết nối Internet khi mở ứng dụng. Các lệnh development vẫn dùng Vite tại `http://localhost:1420` để hỗ trợ HMR.
 
 ## 1. Chuẩn bị chung
 
@@ -161,7 +163,7 @@ adb install -r \
 Nếu ADB báo `INSTALL_FAILED_UPDATE_INCOMPATIBLE`, trên thiết bị đang có cùng package nhưng được ký bằng key khác. Gỡ bản cũ sẽ xóa dữ liệu game:
 
 ```bash
-adb uninstall com.orderedsokoban.game
+adb uninstall com.swordkoban.game
 ```
 
 Sau đó chạy lại lệnh cài APK.
@@ -236,8 +238,8 @@ npm run tauri:ios:build -- --open
 
 Trong cửa sổ project Xcode:
 
-1. Chọn project `ordered-sokoban` màu xanh ở Project Navigator.
-2. Trong `TARGETS`, chọn `ordered-sokoban_iOS`.
+1. Chọn project `swordkoban` màu xanh ở Project Navigator.
+2. Trong `TARGETS`, chọn `swordkoban_iOS`.
 3. Mở `Signing & Capabilities`.
 4. Bật `Automatically manage signing`.
 5. Chọn Apple Developer Team.
@@ -254,7 +256,7 @@ Không lưu lệnh `export` chứa Team ID thật vào file `.md` hoặc source 
 Bundle Identifier hiện tại:
 
 ```text
-com.orderedsokoban.game
+com.swordkoban.game
 ```
 
 Nếu Apple báo Bundle Identifier không khả dụng, đổi `identifier` trong `src-tauri/tauri.conf.json` sang một giá trị duy nhất. Không chỉ sửa trực tiếp trong Xcode vì Tauri có thể ghi đè thay đổi đó.
@@ -305,7 +307,7 @@ Cấu hình nằm trong:
 
 ```text
 src-tauri/gen/apple/project.yml
-src-tauri/gen/apple/ordered-sokoban.xcodeproj/project.pbxproj
+src-tauri/gen/apple/swordkoban.xcodeproj/project.pbxproj
 ```
 
 Nếu đổi phiên bản Node được cài qua NVM, chạy `command -v npm` và cập nhật đường dẫn Node trong build script.
@@ -387,7 +389,7 @@ Workflow sử dụng runner `windows-latest` và tạo bộ cài NSIS x64 dạng
 3. Chọn workflow `Build Windows EXE`.
 4. Chọn `Run workflow`.
 5. Chờ job `Build Windows x64 NSIS installer` hoàn tất.
-6. Ở cuối trang workflow run, tải artifact có tên dạng `ordered-sokoban-<version>-windows-x86_64-nsis`.
+6. Ở cuối trang workflow run, tải artifact có tên dạng `swordkoban-<version>-windows-x86_64-nsis`.
 
 Giải nén artifact để lấy file cài đặt `.exe`.
 
@@ -437,8 +439,8 @@ Workflow sử dụng `ubuntu-22.04` làm baseline x64 và tạo hai định dạ
 Artifact có tên dạng:
 
 ```text
-ordered-sokoban-<version>-linux-x86_64-appimage
-ordered-sokoban-<version>-linux-x86_64-deb
+swordkoban-<version>-linux-x86_64-appimage
+swordkoban-<version>-linux-x86_64-deb
 ```
 
 Workflow cũng tự chạy khi push Git tag bắt đầu bằng `v`, giống workflow Windows.
@@ -462,7 +464,7 @@ chmod +x ./*.AppImage
 ### 5.4. Cài gói DEB
 
 ```bash
-sudo apt install ./ordered-sokoban*.deb
+sudo apt install ./swordkoban*.deb
 ```
 
 Workflow chỉ upload Actions Artifacts, có quyền `contents: read` và không cần GitHub Secret. `ubuntu-22.04` được dùng thay vì `ubuntu-latest` để giữ mức yêu cầu `glibc` thấp hơn và tăng khả năng chạy trên các distro Linux cũ.

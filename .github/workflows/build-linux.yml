@@ -59,7 +59,7 @@ jobs:
           tauriScript: npm run tauri
           args: --bundles appimage,deb
           uploadWorkflowArtifacts: true
-          workflowArtifactNamePattern: ordered-sokoban-[version]-linux-[arch]-[bundle]
+          workflowArtifactNamePattern: swordkoban-[version]-linux-[arch]-[bundle]
 
       - name: Verify Linux package outputs
         shell: bash

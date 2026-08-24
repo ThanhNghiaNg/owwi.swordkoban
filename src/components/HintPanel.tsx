@@ -1,5 +1,5 @@
 import { DIRECTION_ARROWS } from "../core/directions";
-import type { HintState } from "../hooks/useOrderedSokoban";
+import type { HintState } from "../hooks/useSwordkoban";
 import { gameButtons } from "../assets/gameAssets";
 
 interface HintPanelProps {

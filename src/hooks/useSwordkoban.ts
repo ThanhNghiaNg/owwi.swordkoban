@@ -11,7 +11,7 @@ export interface HintState {
   error?: string;
 }
 
-export function useOrderedSokoban(initialConfig: Partial<GeneratorConfig> = {}) {
+export function useSwordkoban(initialConfig: Partial<GeneratorConfig> = {}) {
   const [config, setConfig] = useState<GeneratorConfig>(() => normalizeGeneratorConfig(initialConfig));
   const initialGenerated = useMemo(() => generateLevel(config), []); // eslint-disable-line react-hooks/exhaustive-deps
   const [level, setLevel] = useState<LevelDefinition>(initialGenerated.level);

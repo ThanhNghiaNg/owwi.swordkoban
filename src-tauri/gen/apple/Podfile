@@ -1,13 +1,13 @@
 # Uncomment the next line to define a global platform for your project
 
-target 'ordered-sokoban_iOS' do
+target 'swordkoban_iOS' do
 platform :ios, '14.0'
-  # Pods for ordered-sokoban_iOS
+  # Pods for swordkoban_iOS
 end
 
-target 'ordered-sokoban_macOS' do
+target 'swordkoban_macOS' do
 platform :osx, '11.0'
-  # Pods for ordered-sokoban_macOS
+  # Pods for swordkoban_macOS
 end
 
 # Delete the deployment target for iOS and macOS, causing it to be inherited from the Podfile

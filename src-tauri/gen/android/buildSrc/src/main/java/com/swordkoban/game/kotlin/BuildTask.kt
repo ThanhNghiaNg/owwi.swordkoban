@@ -1,4 +1,5 @@
 import java.io.File
+// Native build tasks for Swordkoban.
 import org.apache.tools.ant.taskdefs.condition.Os
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException

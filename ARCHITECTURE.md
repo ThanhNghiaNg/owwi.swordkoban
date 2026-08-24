@@ -1,4 +1,4 @@
-# Ordered Sokoban — Architecture
+# Swordkoban — Architecture
 
 ## Design goals
 
@@ -15,7 +15,7 @@
 - `src/core/object-rules.ts` — centralized per-object collision behavior for extensibility.
 - `src/core/solver.ts` — push-state best-first search; reconstructs exact player inputs.
 - `src/core/generator.ts` — seeded generation, solver validation, guaranteed fallback.
-- `src/hooks/useOrderedSokoban.ts` — React orchestration: history, undo, reset, hint, keyboard.
+- `src/hooks/useSwordkoban.ts` — React orchestration: history, undo, reset, hint, keyboard.
 - `src/components/*` — presentation and input only.
 - `src/assets/*` — phase-1 vector game art.
 - `src-tauri/*` — native shell/config; intentionally has no gameplay logic.

@@ -1,6 +1,6 @@
-name: ordered-sokoban
+name: swordkoban
 options:
-  bundleIdPrefix: com.orderedsokoban.game
+  bundleIdPrefix: com.swordkoban.game
   deploymentTarget:
     iOS: 14.0
 fileGroups: [../../src]
@@ -10,8 +10,8 @@ configs:
 settingGroups:
   app:
     base:
-      PRODUCT_NAME: Ordered Sokoban
-      PRODUCT_BUNDLE_IDENTIFIER: com.orderedsokoban.game
+      PRODUCT_NAME: Swordkoban
+      PRODUCT_BUNDLE_IDENTIFIER: com.swordkoban.game
 targetTemplates:
   app:
     type: application
@@ -24,20 +24,21 @@ targetTemplates:
     settings:
       groups: [app]
 targets:
-  ordered-sokoban_iOS:
+  swordkoban_iOS:
     type: application
     platform: iOS
+    productName: Swordkoban
     sources:
       - path: Sources
       - path: Assets.xcassets
       - path: Externals
-      - path: ordered-sokoban_iOS
+      - path: swordkoban_iOS
       - path: assets
         buildPhase: resources
         type: folder
       - path: LaunchScreen.storyboard
     info:
-      path: ordered-sokoban_iOS/Info.plist
+      path: swordkoban_iOS/Info.plist
       properties:
         LSRequiresIPhoneOS: true
         UILaunchStoryboardName: LaunchScreen
@@ -54,7 +55,7 @@ targets:
         CFBundleShortVersionString: 1.0.1
         CFBundleVersion: "1.0.1"
     entitlements:
-      path: ordered-sokoban_iOS/ordered-sokoban_iOS.entitlements
+      path: swordkoban_iOS/swordkoban_iOS.entitlements
     scheme:
       environmentVariables:
         RUST_BACKTRACE: full

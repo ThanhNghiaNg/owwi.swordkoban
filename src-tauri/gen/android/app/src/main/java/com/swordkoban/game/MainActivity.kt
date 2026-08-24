@@ -1,4 +1,4 @@
-package com.orderedsokoban.game
+package com.swordkoban.game
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

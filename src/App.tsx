@@ -7,10 +7,10 @@ import { HintPanel } from "./components/HintPanel";
 import { MoveControls } from "./components/MoveControls";
 import { WinOverlay } from "./components/WinOverlay";
 import { WordProgress } from "./components/WordProgress";
-import { useOrderedSokoban } from "./hooks/useOrderedSokoban";
+import { useSwordkoban } from "./hooks/useSwordkoban";
 
 export default function App() {
-  const sokoban = useOrderedSokoban();
+  const sokoban = useSwordkoban();
   return (
     <div
       className="app-shell"
@@ -23,7 +23,7 @@ export default function App() {
           <img src={portalFrames[3]} alt="" draggable={false} />
           <div>
             <p className="brand-kicker">Khu vườn chữ</p>
-            <h1>Ordered <span>Sokoban</span></h1>
+            <h1>Sword<span>koban</span></h1>
           </div>
         </div>
         <div className="header-rule">

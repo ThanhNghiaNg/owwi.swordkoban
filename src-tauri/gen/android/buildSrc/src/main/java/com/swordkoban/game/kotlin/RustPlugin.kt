@@ -1,4 +1,5 @@
 import com.android.build.api.dsl.ApplicationExtension
+// Rust build integration for Swordkoban.
 import org.gradle.api.DefaultTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project

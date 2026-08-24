@@ -43,7 +43,7 @@ jobs:
           tauriScript: npm run tauri
           args: --bundles nsis --target x86_64-pc-windows-msvc
           uploadWorkflowArtifacts: true
-          workflowArtifactNamePattern: ordered-sokoban-[version]-windows-[arch]-[bundle]
+          workflowArtifactNamePattern: swordkoban-[version]-windows-[arch]-[bundle]
 
       - name: Verify installer output
         shell: pwsh

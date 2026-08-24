@@ -7,7 +7,7 @@ fn main() {
     #[cfg(target_os = "linux")]
     configure_linux_webview();
 
-    ordered_sokoban_lib::run();
+    swordkoban_lib::run();
 }
 
 #[cfg(target_os = "linux")]

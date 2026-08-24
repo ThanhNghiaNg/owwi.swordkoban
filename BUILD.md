@@ -412,7 +412,62 @@ Workflow chỉ upload Actions Artifact, không tự tạo GitHub Release và ch�
 
 > Bộ cài hiện chưa có chứng thư code signing. Windows SmartScreen có thể cảnh báo `Unknown publisher`; đây không phải lỗi build. Muốn loại bỏ cảnh báo cho bản phát hành công khai cần chứng thư ký code Windows và cấu hình signing riêng.
 
-## 5. Phiên bản ứng dụng
+## 5. Build Linux bằng GitHub Actions
+
+Workflow Linux nằm tại:
+
+```text
+.github/workflows/build-linux.yml
+```
+
+Workflow sử dụng `ubuntu-22.04` làm baseline x64 và tạo hai định dạng:
+
+- `AppImage`: chạy trực tiếp trên nhiều bản phân phối Linux.
+- `.deb`: cài trên Ubuntu, Debian và các hệ điều hành tương thích.
+
+### 5.1. Chạy thủ công
+
+1. Push repository lên GitHub.
+2. Mở tab `Actions`.
+3. Chọn workflow `Build Linux Packages`.
+4. Chọn `Run workflow`.
+5. Chờ job `Build Linux x64 AppImage and DEB` hoàn tất.
+6. Tải hai artifact Linux ở cuối trang workflow run.
+
+Artifact có tên dạng:
+
+```text
+ordered-sokoban-<version>-linux-x86_64-appimage
+ordered-sokoban-<version>-linux-x86_64-deb
+```
+
+Workflow cũng tự chạy khi push Git tag bắt đầu bằng `v`, giống workflow Windows.
+
+### 5.2. Vị trí file trên runner
+
+```text
+src-tauri/target/release/bundle/appimage/*.AppImage
+src-tauri/target/release/bundle/deb/*.deb
+```
+
+### 5.3. Chạy AppImage
+
+Sau khi tải và giải nén artifact:
+
+```bash
+chmod +x ./*.AppImage
+./*.AppImage
+```
+
+### 5.4. Cài gói DEB
+
+```bash
+sudo apt install ./ordered-sokoban*.deb
+```
+
+Workflow chỉ upload Actions Artifacts, có quyền `contents: read` và không cần GitHub Secret. `ubuntu-22.04` được dùng thay vì `ubuntu-latest` để giữ mức yêu cầu `glibc` thấp hơn và tăng khả năng chạy trên các distro Linux cũ.
+
+## 6. Phiên bản ứng dụng
 
 Phiên bản chung nằm trong `src-tauri/tauri.conf.json`:
 
@@ -428,11 +483,12 @@ Trước khi phát hành bản mới:
 - Android phải có `versionCode` lớn hơn bản đã upload trước đó.
 - iOS phải có build number chưa từng được upload cho version đó.
 
-## 6. Tài liệu chính thức
+## 7. Tài liệu chính thức
 
 - Tauri mobile prerequisites: <https://v2.tauri.app/start/prerequisites/>
 - Tauri Android signing: <https://v2.tauri.app/distribute/sign/android/>
 - Tauri iOS signing: <https://v2.tauri.app/distribute/sign/ios/>
 - Tauri App Store distribution: <https://v2.tauri.app/distribute/app-store/>
 - Tauri GitHub Actions pipeline: <https://v2.tauri.app/distribute/pipelines/github/>
+- Tauri AppImage distribution: <https://v2.tauri.app/distribute/appimage/>
 - Apple Developer registration: <https://developer.apple.com/register/>

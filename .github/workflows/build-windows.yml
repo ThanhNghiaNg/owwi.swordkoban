@@ -1,0 +1,63 @@
+name: Build Windows EXE
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-exe-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-windows:
+    name: Build Windows x64 NSIS installer
+    runs-on: windows-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
+
+      - name: Install JavaScript dependencies
+        run: npm ci
+
+      - name: Build and upload Windows installer
+        uses: tauri-apps/tauri-action@v1
+        with:
+          tauriScript: npm run tauri
+          args: --bundles nsis --target x86_64-pc-windows-msvc
+          uploadWorkflowArtifacts: true
+          workflowArtifactNamePattern: ordered-sokoban-[version]-windows-[arch]-[bundle]
+
+      - name: Verify installer output
+        shell: pwsh
+        run: |
+          $installers = Get-ChildItem `
+            -Path "src-tauri/target/x86_64-pc-windows-msvc/release/bundle/nsis" `
+            -Filter "*.exe" `
+            -File `
+            -Recurse
+
+          if (-not $installers) {
+            throw "Windows NSIS installer was not generated."
+          }
+
+          $installers | ForEach-Object {
+            Write-Host "Generated installer: $($_.FullName)"
+          }

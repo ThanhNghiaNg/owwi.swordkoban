@@ -370,7 +370,49 @@ Với Personal Team, kết nối iPhone thật, chọn thiết bị làm destina
 
 Đây chỉ là thông báo tổng quát. Trong Issue Navigator, mở lỗi rồi xem phần output của `Build Rust Code`; nguyên nhân thật thường nằm ở những dòng ngay phía trên.
 
-## 4. Phiên bản ứng dụng
+## 4. Build Windows EXE bằng GitHub Actions
+
+Workflow Windows nằm tại:
+
+```text
+.github/workflows/build-windows.yml
+```
+
+Workflow sử dụng runner `windows-latest` và tạo bộ cài NSIS x64 dạng `.exe`. Có hai cách chạy:
+
+### 4.1. Chạy thủ công
+
+1. Push repository lên GitHub.
+2. Mở tab `Actions`.
+3. Chọn workflow `Build Windows EXE`.
+4. Chọn `Run workflow`.
+5. Chờ job `Build Windows x64 NSIS installer` hoàn tất.
+6. Ở cuối trang workflow run, tải artifact có tên dạng `ordered-sokoban-<version>-windows-x86_64-nsis`.
+
+Giải nén artifact để lấy file cài đặt `.exe`.
+
+### 4.2. Chạy bằng Git tag
+
+Workflow tự chạy với tag bắt đầu bằng `v`:
+
+```bash
+git tag v1.0.1
+git push origin v1.0.1
+```
+
+### 4.3. Vị trí file trên runner
+
+Trong quá trình build, bộ cài nằm tại:
+
+```text
+src-tauri/target/x86_64-pc-windows-msvc/release/bundle/nsis/*.exe
+```
+
+Workflow chỉ upload Actions Artifact, không tự tạo GitHub Release và chỉ cần quyền `contents: read`. Không cần khai báo GitHub Secret cho bản build chưa ký.
+
+> Bộ cài hiện chưa có chứng thư code signing. Windows SmartScreen có thể cảnh báo `Unknown publisher`; đây không phải lỗi build. Muốn loại bỏ cảnh báo cho bản phát hành công khai cần chứng thư ký code Windows và cấu hình signing riêng.
+
+## 5. Phiên bản ứng dụng
 
 Phiên bản chung nằm trong `src-tauri/tauri.conf.json`:
 
@@ -386,10 +428,11 @@ Trước khi phát hành bản mới:
 - Android phải có `versionCode` lớn hơn bản đã upload trước đó.
 - iOS phải có build number chưa từng được upload cho version đó.
 
-## 5. Tài liệu chính thức
+## 6. Tài liệu chính thức
 
 - Tauri mobile prerequisites: <https://v2.tauri.app/start/prerequisites/>
 - Tauri Android signing: <https://v2.tauri.app/distribute/sign/android/>
 - Tauri iOS signing: <https://v2.tauri.app/distribute/sign/ios/>
 - Tauri App Store distribution: <https://v2.tauri.app/distribute/app-store/>
+- Tauri GitHub Actions pipeline: <https://v2.tauri.app/distribute/pipelines/github/>
 - Apple Developer registration: <https://developer.apple.com/register/>

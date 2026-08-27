@@ -163,7 +163,7 @@ adb install -r \
 Nếu ADB báo `INSTALL_FAILED_UPDATE_INCOMPATIBLE`, trên thiết bị đang có cùng package nhưng được ký bằng key khác. Gỡ bản cũ sẽ xóa dữ liệu game:
 
 ```bash
-adb uninstall com.swordkoban.game
+adb uninstall com.owwi.swordkoban
 ```
 
 Sau đó chạy lại lệnh cài APK.

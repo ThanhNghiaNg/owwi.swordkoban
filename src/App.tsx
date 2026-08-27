@@ -100,6 +100,11 @@ export default function App() {
         </aside>
       </main>
 
+      <footer className="app-footer">
+        <span>© 2026 OWWI · Swordkoban</span>
+        <a href="/privacy">Chính sách quyền riêng tư</a>
+      </footer>
+
       {sokoban.game.status === "won" && (
         <WinOverlay
           word={sokoban.game.word}

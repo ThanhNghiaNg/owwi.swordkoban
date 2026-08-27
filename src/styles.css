@@ -777,6 +777,27 @@ kbd {
 .generator-actions { display: grid; grid-template-columns: 1fr auto; gap: 7px; margin-top: 10px; }
 .rules-card p:last-child { color: #d7e2c6; font-size: 11px; line-height: 1.5; margin: 6px 0 0; }
 
+.app-footer {
+  width: min(1440px, 100%);
+  margin: 18px auto 0;
+  padding: 12px 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid rgba(255, 243, 193, .2);
+  color: #cbd9bc;
+  font-size: 11px;
+}
+.app-footer a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--gold-light);
+  font-weight: 800;
+  text-underline-offset: 3px;
+}
+
 .win-overlay {
   position: fixed;
   inset: 0;
@@ -872,6 +893,7 @@ kbd {
   .generator-actions { grid-template-columns: 1fr; }
   .generator-actions .ghost-button { width: 100%; }
   .win-card { padding-inline: 20px; }
+  .app-footer { align-items: flex-start; flex-direction: column; gap: 0; }
 }
 
 @media (hover: none) {

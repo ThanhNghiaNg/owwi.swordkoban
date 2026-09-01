@@ -2,7 +2,7 @@
 
 A Tauri 2 + React + TypeScript + Tailwind CSS word-puzzle game for Windows, macOS, Linux, Android, and iOS.
 
-Production web app: <https://swordkoban.vercel.app>
+Production web app: <https://swordkoban.owwi.net>
 
 Instead of ordinary Sokoban goals, each crate carries a letter and the goal row forms a word such as **SWORD**. Crates are never locked: any crate may enter or leave any goal at any time. The only win condition is the final arrangement — every goal must contain the matching letter so the word is spelled correctly.
 
@@ -56,7 +56,7 @@ Production bundle for the current desktop OS:
 npm run tauri:build
 ```
 
-Production Tauri builds load the hosted app from `https://swordkoban.vercel.app`. The local Vite server is used only by the development commands.
+Production Tauri builds load the hosted app from `https://swordkoban.owwi.net`. The local Vite server is used only by the development commands.
 
 A Tauri build produces the native bundles available for the OS on which you run it. You do not cross-build all desktop operating systems from a single host.
 

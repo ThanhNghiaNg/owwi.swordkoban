@@ -2,7 +2,7 @@
 
 Tài liệu này mô tả quy trình build dự án **Swordkoban** bằng Tauri 2, bao gồm chạy trên thiết bị thật, ký bản Android release và xử lý các lỗi Xcode đã gặp trong dự án.
 
-Bản production trên mọi nền tảng tải giao diện từ <https://swordkoban.vercel.app>. Vì vậy thiết bị cần kết nối Internet khi mở ứng dụng. Các lệnh development vẫn dùng Vite tại `http://localhost:1420` để hỗ trợ HMR.
+Bản production trên mọi nền tảng tải giao diện từ <https://swordkoban.owwi.net>. Vì vậy thiết bị cần kết nối Internet khi mở ứng dụng. Các lệnh development vẫn dùng Vite tại `http://localhost:1420` để hỗ trợ HMR.
 
 ## 1. Chuẩn bị chung
 
